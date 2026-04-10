@@ -2,10 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 export const dynamic = 'force-dynamic';
 
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
 export async function POST(req: NextRequest) {
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const { topic, tone, length } = await req.json();
   const lengthMap: any = { short: '100-150', medium: '200-300', long: '400-500' };
   const words = lengthMap[length] || '200-300';
